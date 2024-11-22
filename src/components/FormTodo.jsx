@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Toaster, toast } from "sonner";
 
 const FormTodo = ({ addTodo }) => {
   const [titles, setTitles] = useState("");
@@ -7,7 +8,7 @@ const FormTodo = ({ addTodo }) => {
     e.preventDefault();
     // console.log(1);
     if (!titles.trim()) {
-      alert("please fill info");
+      toast.warning("please, fill info");
       return;
     }
     addTodo({
@@ -15,6 +16,7 @@ const FormTodo = ({ addTodo }) => {
       title: titles,
       completed: false,
     });
+    setTitles("");
   };
   //   console.log(titles);
   return (
@@ -25,6 +27,7 @@ const FormTodo = ({ addTodo }) => {
           type="text"
           placeholder="   rejalaringizni kiriting"
           onChange={(e) => setTitles(e.target.value)}
+          value={titles}
         />
       </label>
       <br />
